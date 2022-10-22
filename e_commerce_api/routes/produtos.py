@@ -37,4 +37,3 @@ def consultar_produto_por_id(id_produto: int, db: Session = Depends(get_db)):
     if not db_produto:
         raise HTTPException(status_code=404, detail='Produto não encontrado')
     return db_produto
-
