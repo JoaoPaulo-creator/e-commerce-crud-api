@@ -29,3 +29,11 @@ def consultar_lista_de_produtos(skip: int = 0, limit: int = 100, db: Session = D
     if not db_produto:
         raise HTTPException(status_code=404, detail='Lista de produtos não encontrada')
     return db_produto
+
+
+@router.get('/get/{id_produto}', status_code=200)
+def consultar_produto_por_id(id_produto: int, db: Session = Depends(get_db)):
+    db_produto = comm_controller.consultar_produto(db, id_produto)
+    if not db_produto:
+        raise HTTPException(status_code=404, detail='Produto não encontrado')
+    return db_produto
