@@ -6,6 +6,7 @@ class Produto(Base):
     __tablename__ = 'produtos'
 
     id = Column(Integer, primary_key=True, index=True)
+    titulo = Column(String, unique=False, index=True)
     nome = Column(String, unique=False, index=True)
-    descricao = Column(String, unique=False, index=False)
     peso = Column(Integer, unique=False, index=True)
+    descricao = Column(String, unique=False, index=True)

@@ -18,7 +18,7 @@ def get_db():
         db.close()
 
 
-@router.post('/produtos', status_code=201)
+@router.post('/produtos', response_model=ProdutoSchema.Produto, status_code=201)
 def cadastrar_produto(produto: ProdutoSchema.ProdutoCreate, db: Session = Depends(get_db)):
     return comm_controller.cadastrar_produto(db, produto)
 

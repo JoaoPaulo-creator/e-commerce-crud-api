@@ -12,7 +12,13 @@ def consultar_produto(db: Session, produto_id: int):
 
 
 def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
-    db_produto = ProdutoModel.Produto(nome=produto.descricao)
+    db_produto = ProdutoModel.Produto(
+        titulo=produto.titulo,
+        nome=produto.nome,
+        peso=produto.peso,
+        descricao=produto.descricao,
+        )  # o que tá
+    # entre parenteses, é o body da requisição. Ao mesmo tempo, são as colunas que foram criada na tabela
     db.add(db_produto)
     db.commit()
     db.refresh(db_produto)
