@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from ..models import ProdutoModel
+from ..models import produto_model
 from ..schemas import ProdutoSchema
 
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
-from ..models import ProdutoModel
+from ..models import produto_model
 from ..schemas import ProdutoSchema
 from ..config.database import SessionLocal, engine
 from ..controllers import e_commerce_controller as comm_controller
@@ -11,11 +11,11 @@ router = APIRouter()
 
 
 def get_db():
-    db = SessionLocal()
+    data_base = SessionLocal()
     try:
-        yield db
+        yield data_base
     finally:
-        db.close()
+        data_base.close()
 
 
 @router.post('/produtos', response_model=ProdutoSchema.Produto, status_code=201)
