@@ -23,3 +23,13 @@ def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
     db.commit()
     db.refresh(db_produto)
     return db_produto
+
+
+def deletar_produto(db: Session, produto_id: int):
+    produto_query_delete = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id)
+    produto_query_delete.delete()
+    db.commit()
+    return {
+        'id_produto': produto_id,
+        'message': 'Produto deletado'
+        }
