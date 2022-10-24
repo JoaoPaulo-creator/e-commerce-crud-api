@@ -5,7 +5,7 @@ from ..schemas import ProdutoSchema
 from ..config.database import SessionLocal, engine
 from ..controllers import e_commerce_controller as comm_controller
 
-ProdutoModel.Base.metadata.create_all(bind=engine)
+produto_model.Base.metadata.create_all(bind=engine)
 
 router = APIRouter()
 
@@ -31,9 +31,15 @@ def consultar_lista_de_produtos(skip: int = 0, limit: int = 100, db: Session = D
     return db_produto
 
 
-@router.get('/get/{id_produto}', status_code=200)
+@router.get('/produtos/{id_produto}', status_code=200)
 def consultar_produto_por_id(id_produto: int, db: Session = Depends(get_db)):
     db_produto = comm_controller.consultar_produto(db, id_produto)
     if not db_produto:
         raise HTTPException(status_code=404, detail='Produto não encontrado')
+    return db_produto
+
+
+@router.delete('/produtos/{id_produto}')
+def deletar_produto_por_id(id_produto: int, db: Session = Depends(get_db)):
+    db_produto = comm_controller.deletar_produto(db, id_produto)
     return db_produto
