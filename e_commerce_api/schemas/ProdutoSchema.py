@@ -1,18 +1,19 @@
 from pydantic import BaseModel
-
+from datetime import datetime
 
 class ProdutoBase(BaseModel):
     descricao: str
     titulo: str
     peso: int
+    data_criacao: datetime
 
 
 class ProdutoCreate(ProdutoBase):
-    nome: str
+    pass
 
 
 class Produto(ProdutoBase):
     id: int
+
     class Config:
         orm_mode = True
-
