@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from ..models import produto_model
 from ..schemas import ProdutoSchema
+from fastapi.encoders import jsonable_encoder
 
 
 def consultar_lista_produtos(db: Session, skip: int = 0, limit: int = 100):
@@ -33,3 +34,12 @@ def deletar_produto(db: Session, produto_id: int):
         'id_produto': produto_id,
         'message': 'Produto deletado'
         }
+
+
+def atualizar_produto(db: Session, produto_id: int, item_atualizado: ProdutoSchema.ProdutoCreate):
+    localizar_produto = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id)
+    #  Quando se vai atualizar um dado no banco de dados, é necessário passar um dicionário
+    #  na função update()
+    localizar_produto.update(item_atualizado.dict())
+    db.commit()
+    return localizar_produto.first()
