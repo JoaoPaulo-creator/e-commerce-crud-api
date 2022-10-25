@@ -2,8 +2,8 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class ProdutoBase(BaseModel):
-    descricao: str
     titulo: str
+    descricao: str
     peso: int
     data_criacao: datetime
 
