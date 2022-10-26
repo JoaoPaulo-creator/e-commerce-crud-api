@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from ..models import produto_model
 from ..schemas import ProdutoSchema
-from fastapi.encoders import jsonable_encoder
+from fastapi import HTTPException
 
 
 def consultar_lista_produtos(db: Session, skip: int = 0, limit: int = 100):
@@ -27,7 +27,11 @@ def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
 
 
 def deletar_produto(db: Session, produto_id: int):
-    produto_query_delete = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id)
+    produto_query_delete = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id).first()
+
+    if produto_query_delete is None:
+        raise HTTPException(status_code=404, detail='Produto não encontrado')
+
     produto_query_delete.delete()
     db.commit()
     return {

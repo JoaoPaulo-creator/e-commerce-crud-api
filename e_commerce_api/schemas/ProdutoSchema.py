@@ -1,11 +1,12 @@
 from pydantic import BaseModel
 from datetime import datetime
 
+
 class ProdutoBase(BaseModel):
     titulo: str
     descricao: str
     peso: int
-    data_criacao: datetime
+    data_criacao: datetime | None = None
 
 
 class ProdutoCreate(ProdutoBase):
