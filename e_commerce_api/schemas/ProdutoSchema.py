@@ -4,7 +4,9 @@ from datetime import datetime
 
 class ProdutoBase(BaseModel):
     titulo: str
-    descricao: str
+    preco: str
+    descricao: str | None = None
+    sabor: str | None = None
     peso: int
     data_criacao: datetime | None = None
 
