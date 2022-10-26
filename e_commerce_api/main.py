@@ -15,3 +15,8 @@ app.add_middleware(
 
 
 app.include_router(produtos.router)
+
+
+@app.get('/')
+async def root():
+    return {'message': 'Ola, mundo'}
