@@ -15,6 +15,8 @@ def consultar_produto(db: Session, produto_id: int):
 def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
     db_produto = produto_model.Produto(
         titulo=produto.titulo,
+        preco=produto.preco,
+        sabor=produto.sabor,
         peso=produto.peso,
         descricao=produto.descricao,
         data_criacao=produto.data_criacao

@@ -8,9 +8,10 @@ class Produto(Base):
 
     id = Column(Integer, primary_key=True, index=True, nullable=False)
     titulo = Column(String, unique=False, index=True, nullable=False)
+    sabor = Column(String, unique=False, index=True, nullable=True)
     peso = Column(Integer, unique=False, index=True, nullable=False)
     descricao = Column(String, unique=False, index=True, nullable=False)
-
+    preco = Column(String, unique=False, index=True, nullable=False)
     data_criacao = Column(TIMESTAMP(timezone=True),
                           unique=False, index=True,
                           nullable=True)
