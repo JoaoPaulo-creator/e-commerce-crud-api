@@ -9,7 +9,9 @@ def consultar_lista_produtos(db: Session, skip: int = 0, limit: int = 100):
 
 
 def consultar_produto(db: Session, produto_id: int):
-    return db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id).first()
+    db_produto = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id).first()
+    if not db_produto:
+        raise HTTPException(status_code=404, detail='Produto não encontrado')
 
 
 def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
@@ -29,16 +31,18 @@ def cadastrar_produto(db: Session, produto: ProdutoSchema.ProdutoCreate):
 
 
 def deletar_produto(db: Session, produto_id: int):
-    produto_query_delete = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id).first()
+    produto_query_delete = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id)
+    select_query = produto_query_delete.first()
 
-    if produto_query_delete is None:
+    if select_query is None:
         raise HTTPException(status_code=404, detail='Produto não encontrado')
 
     produto_query_delete.delete()
     db.commit()
+
     return {
         'id_produto': produto_id,
-        'message': 'Produto deletado'
+        'message': 'Produto deletado com sucesso'
         }
 
 
@@ -46,6 +50,12 @@ def atualizar_produto(db: Session, produto_id: int, item_atualizado: ProdutoSche
     localizar_produto = db.query(produto_model.Produto).filter(produto_model.Produto.id == produto_id)
     #  Quando se vai atualizar um dado no banco de dados, é necessário passar um dicionário
     #  na função update()
+
+    select_query = localizar_produto.first()
+
+    if select_query is None:
+        raise HTTPException(status_code=404, detail=f'Id {produto_id} não encontrado')
+
     localizar_produto.update(item_atualizado.dict())
     db.commit()
     return localizar_produto.first()
