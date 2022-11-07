@@ -7,7 +7,7 @@ async function dataBaseConnection() {
         await mongoose.connect(dbUri)
         console.log('Conectado a base de dados com sucesso')
     } catch (error) {        
-        // finanilizando a execução com o banco, caso dê um erro
+        console.error(error)
         process.exit(1)
     }
 }
