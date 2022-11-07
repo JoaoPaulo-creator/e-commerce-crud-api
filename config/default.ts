@@ -6,5 +6,5 @@ const DB_PWD = process.env.DB_PASS
 
 export default {
     port: 3333,
-    dbUri: `mongodb+srv://${DB_USER}:${DB_PWD}@ecommercecrudapi.cxzqozi.mongodb.net/?retryWrites=true&w=majority`
+    dbUri: `mongodb+srv://${DB_USER}:${DB_PWD}@ecommercecrudapi.cxzqozi.mongodb.net/?retryWrites=true&w=majority`    
 }
