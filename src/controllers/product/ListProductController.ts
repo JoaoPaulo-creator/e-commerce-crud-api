@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import ProductRepository from "../repository/ProductRepository"
+import ProductRepository from "../../repository/product/ProductRepository"
 
 export default new class ListProductController {
 
@@ -13,4 +13,8 @@ export default new class ListProductController {
 
     return respose.status(200).json(product)
   }
+}
+
+export async function ListProduct(request: Request, respose: Response) {
+
 }

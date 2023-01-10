@@ -1,4 +1,4 @@
-import { PRODUCT_SCHEMA } from "../models/ProductModel"
+import { PRODUCT_SCHEMA } from "../../models/ProductModel"
 
 class ProductRepository {
 
@@ -12,12 +12,26 @@ class ProductRepository {
     return product
   }
 
-  async create(arg: JSON){
-    const product = await PRODUCT_SCHEMA.create(arg)
+  async create(data: any){
+    const product = await PRODUCT_SCHEMA.create(data)
+    return product
   }
 
-  async update(id: string, arg: string){
-    const product = await PRODUCT_SCHEMA.findById(id)
+  async update(id: any, {
+    title,
+    price,
+    flavour,
+    weight,
+    description
+  }: any){
+
+    const product = await PRODUCT_SCHEMA.findByIdAndUpdate(id, {
+      title,
+      price,
+      flavour,
+      weight,
+      description
+    })
     return product
   }
 

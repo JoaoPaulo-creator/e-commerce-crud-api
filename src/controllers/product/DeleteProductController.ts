@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import ProductRepository from "../repository/ProductRepository";
+import ProductRepository from "../../repository/product/ProductRepository";
 
 export default new class DeleteProductController {
 
