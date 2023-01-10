@@ -6,5 +6,5 @@ const port = config.get<number>('port')
 
 app.listen(port, async () => {
     await dataBaseConnection()
-    console.log(`Server rodando na porta: ${port}`)
+    console.log(`🔥 Server rodando na porta: ${port}`)
 })
