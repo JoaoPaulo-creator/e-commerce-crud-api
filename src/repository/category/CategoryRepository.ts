@@ -3,8 +3,17 @@ import { categorySchema } from "../../models/CategoryModel"
 export default new class CategoryRepository {
 
   async create(data: any){
-    const category = await categorySchema.create(data)
+    const category = await categorySchema.findOneAndUpdate(data, {upsert: true, returnNewDocument: true})
     return category
+  }
+
+  // #BUG
+  async find(data: any){
+    const duplicate = await categorySchema.aggregate([
+      { '$group': { "_id": `$${data}`, 'count': {$sum: 1} } },
+      { '$match': { 'count': { '$gt': 1 }}},
+    ])
+    return duplicate
   }
 
   async findAll(){
@@ -27,5 +36,9 @@ export default new class CategoryRepository {
     return category
   }
 
+  async count(data: any){
+    const category = await categorySchema.count(data)
+    return category
+  }
 }
 
