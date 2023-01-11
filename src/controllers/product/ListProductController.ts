@@ -8,7 +8,7 @@ export default new class ListProductController {
     const product = await ProductRepository.findById(id)
 
     if(!product){
-      return respose.sendStatus(404).json({ message: 'Product not found'})
+      return respose.status(404).json({ message: 'Product not found'})
     }
 
     return respose.status(200).json(product)
