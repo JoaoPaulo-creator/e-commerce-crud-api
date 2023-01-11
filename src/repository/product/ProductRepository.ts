@@ -1,19 +1,19 @@
-import { PRODUCT_SCHEMA } from "../../models/ProductModel"
+import { productSchema } from "../../models/ProductModel"
 
 class ProductRepository {
 
   async findAll(){
-    const products = await PRODUCT_SCHEMA.find()
+    const products = await productSchema.find()
     return products
   }
 
   async findById(id: string){
-    const product = await PRODUCT_SCHEMA.findById(id)
+    const product = await productSchema.findById(id)
     return product
   }
 
   async create(data: any){
-    const product = await PRODUCT_SCHEMA.create(data)
+    const product = await productSchema.create(data)
     return product
   }
 
@@ -25,7 +25,7 @@ class ProductRepository {
     description
   }: any){
 
-    const product = await PRODUCT_SCHEMA.findByIdAndUpdate(id, {
+    const product = await productSchema.findByIdAndUpdate(id, {
       title,
       price,
       flavour,
@@ -36,7 +36,7 @@ class ProductRepository {
   }
 
   async delete(id: string){
-   const product = await PRODUCT_SCHEMA.findByIdAndDelete(id)
+   const product = await productSchema.findByIdAndDelete(id)
    return product
   }
 

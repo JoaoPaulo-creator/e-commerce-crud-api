@@ -14,7 +14,3 @@ export default new class ListProductController {
     return respose.status(200).json(product)
   }
 }
-
-export async function ListProduct(request: Request, respose: Response) {
-
-}

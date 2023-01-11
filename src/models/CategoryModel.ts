@@ -1,8 +1,12 @@
 import { model, Schema} from 'mongoose'
 
-export const CategorySchema = model('CategoryModel', new Schema({
+export const categorySchema = model('CategoryModel', new Schema({
   title: {
     type: String,
     require: true
+  },
+  },
+  {
+    timestamps: true
   }
-}))
+))
