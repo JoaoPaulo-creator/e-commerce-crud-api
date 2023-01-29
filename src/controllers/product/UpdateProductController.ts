@@ -12,7 +12,9 @@ export default new class UpdateProductContoller {
         price,
         flavour,
         weight,
-        description
+        description,
+        onSale,
+        unitCount
       } = request.body
 
       await ProductRepository.update(id, {
@@ -20,7 +22,9 @@ export default new class UpdateProductContoller {
         price,
         flavour,
         weight,
-        description
+        description,
+        onSale,
+        unitCount
       })
 
       const updatedProduct = await ProductRepository.findById(id)

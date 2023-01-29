@@ -1,4 +1,4 @@
-import { model, Schema} from 'mongoose'
+import { model, Schema } from 'mongoose'
 
 export const productSchema =  model('ProductModel', new Schema
 ({
@@ -7,6 +7,8 @@ export const productSchema =  model('ProductModel', new Schema
     flavour: String,
     weight: Number,
     description: String,
+    unitCount: Number,
+    onSale: Boolean,
 
     categoryId:{
       type: Schema.Types.ObjectId,

@@ -17,12 +17,14 @@ class ProductRepository {
     return product
   }
 
-  async update(id: any, {
+  async update(id: string, {
     title,
     price,
     flavour,
     weight,
-    description
+    description,
+    onSale,
+    unitCount
   }: any){
 
     const product = await productSchema.findByIdAndUpdate(id, {
@@ -30,7 +32,9 @@ class ProductRepository {
       price,
       flavour,
       weight,
-      description
+      description,
+      onSale,
+      unitCount
     })
     return product
   }
